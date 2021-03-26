@@ -1,0 +1,203 @@
+<!--
+Matthew Zamudio
+TEC 378: Final business site
+Started 4/6/20
+
+This is a simple calculator to show how rates would be calculated. Some specific functions don't work 100% and it only can read Latin letters. It is simply to showcase the basics of the system and how the rates my company are calculated. Dile upload doesnt actually do anything nor does checkout buttons but are a placeholder to show that they are intended to be used in the functions they represent. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>YOMU Services</title>
+	<link rel="shortcut icon" href="../images/logo.png"> <!-- favicon -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Yomu, translation, business, comission-based, english, chinese, japanese, spanish, languages"> 
+    <!-- SEO keywords -->
+    
+    <!-- adding css -->
+    <link rel="stylesheet" href="../styles/normalize.css">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+	<header>
+        <!-- webpage logo -->
+        <!-- the image is clickable! -->
+        <a href="../index.html"><img src="../images/logo.png" alt="yomu"></a>
+        
+        <!-- main header -->
+        <h2>YOMU</h2>
+        <h3 style="color:aliceblue">Professional Translation Services</h3>
+	</header>  
+    <!-- adding navigation -->
+ 
+    <!-- most of these pages are WIP! currently -->
+    <nav id="nav_menu">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="quote.html"  class="current">Get a Quote</a></li>
+            <li><a href="team.html">Team</a></li>
+            <!-- about section -->
+            <li class="lastitem"><a href="#">About</a>
+                <ul>
+                    <li><a href="about.html">History</a></li>
+                    <li><a href="contact.html">Contact Information</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>  
+	<main>
+        <img src="../images/yomu.png" class="bg-img">
+        <h2>Get a Quote!</h2>
+        <article class="lastart">
+        <!-- main text area -->  
+    <!-- JS section. I likely will combind all scripts into one element or use external JS files. -->
+    <script>
+    function countWords(){
+        var std = 0.07;
+        var biz = 0.10;
+        var tec = 0.15;
+        var rate = 0.0;
+        
+        //conditionals will go here
+        s = document.getElementById("inputString").value;
+	    s = s.replace(/(^\s*)|(\s*$)/gi,""); //white space chars
+	    s = s.replace(/[ ]{2,}/gi," "); // double spaces
+	    s = s.replace(/\n /,"\n"); //
+        s = s.replace(/\!|\?|\~/g,""); //replace special chars. this line is a work in progress. regex is challenging.
+
+        document.getElementById("wordcount").value = s.split(' ').length;
+        
+        //really primative. just showing it works for spanish
+        if(document.getElementById("stand").checked){
+            rate = std;
+        }else if(document.getElementById("biz").checked){
+            rate = biz;
+        }else if(document.getElementById("tech").checked){
+            rate = tec;
+        }else{
+            window.alert("Please select your translation tier.")
+        }
+        
+        var quote = s.split(' ').length * rate;
+        
+        //adds 20% for peer reviewed option checked. //
+        if(document.getElementById("peer").checked){
+            quote = quote + (quote * .2);
+        }
+        
+        var price = quote.toFixed(2); //format decimal as price
+        document.getElementById("quote").value = price;
+    }
+    </script>
+    <!-- selection form for language availability -->
+        <script>
+            function getLang(){
+                var outputs = ""; //output string declared
+                var lan = document.getElementById("langs").value; //sets lan to selected ID from HTML form langs //
+                
+                //conditional statements to determine which languages could be translated based off user selection //
+                if (lan.localeCompare("eng") == 0){
+                    outputs = "Spanish, Japanese, Chinese";
+                }else if(lan.localeCompare("spa")== 0){
+                    outputs+="English, Japanese";
+                }else if(lan.localeCompare("chi")== 0){
+                    outputs= "English, Korean";
+                }else if (lan.localeCompare("jpn")== 0){
+                    outputs="English, Spanish";
+                }else if(lan.localeCompare("kor")== 0){
+                    outputs="English, Chinese"
+                }
+                //returns outputs string displayed in paragaph element
+              document.getElementById("regresar").innerHTML = outputs; 
+            }            
+        </script> 
+            
+        <script>
+            function submitOrder(){
+                window.open("checkout.html")
+            }
+            
+        </script>
+            <!----------------------------------------------->
+            
+            <!-- language availability form -->
+            <form>
+            
+            <label for="langs">Available Languages:</label><br>
+            <select id="langs">
+                <option value="eng">English</option>
+                <option value="spa">Spanish</option>
+                <option value="chi">Chinese</option>
+                <option value="jpn">Japanese</option>
+                <option value="kor">Korean</option>
+            </select>   
+     
+                <button type="button" onclick="getLang()">View Options</button> <!-- calls getLang JS fuction -->
+                
+                <!-- displays output from function -->
+                <p id="regresar"></p>
+                
+            </form>
+            <!-- form -->
+            <!-- each button will change starting rate -->
+            <form>
+                <!-- user must select a rate otherwise an error message will appear -->
+              <input type="radio" id="stand" name="package" value="stand">
+              <label for="stand">Standard</label><br>
+                
+              <input type="radio" id="biz" name="package" value="biz">
+              <label for="biz">Business</label><br>
+                
+              <input type="radio" id="tech" name="package" value="other">
+              <label for="other">Technical</label><br>
+                
+                
+                <!-- peer review checkbox option +20% -->
+                <br><input type="checkbox" id="peer" name="peerreview" value="peer">
+                <label for="peer"  title="Standard rate +20%">Peer Reviewed <a href="services.html#quality">More info.</a></label>
+            </form> 
+            
+        <!-- text calculation form -->    
+        <!-- note: current only counts based off spaces, and sometimes counts special characters as words. -->        
+        <form name="form1" method="post" action="">
+        <textarea name="inputString" id="inputString" cols="50" rows="4">Paste text to calculate the word count.</textarea>
+            <br>
+            <input type="button" name="Convert" value="Count Words" onClick="countWords();"> 
+            <input name="wordcount" id="wordcount" type="text" value="" size="6"><br>
+            <label for="quote">Quote: $</label>
+            <input name="quote" id="quote" type="text" value="" size="6"><br>
+
+            
+            <!----------------->
+            <br><textarea name="instructions" id="instructions" cols="50" rows="3">Specific Instructions for Translator</textarea><br>
+            
+            <!-- upload documents, but doesnt actually do anything -->
+            <input type="file" name="upload" value="Upload Files" onClick="upload()" accept="application/msword, application/pdf"><br> <!-- only accepts pdf and word docs -->
+
+            <!-- going to take user to checkout but is not implimented -->
+            <input type="button" name="submit" value="Place Order" onClick="submitOrder()">           
+        </form>  
+
+        </article>
+	</main>
+    
+    <!-- same studio albums sidebar -->
+    <aside>
+        <img src="../images/jpn-eng.png">
+        <h2>Current Rates:</h2>
+        <h3>Standard</h3>Starting at $0.07 per word<br>
+        <h3>Business</h3>Starting at $0.10 per word<br>
+        <h3>Technical</h3>Starting at $0.15 per word<br>
+
+        </aside>
+	<footer>
+        <!-- footer -->
+        <p><i>&copy YOMU Translation Services</i> (2020)</p>	      
+	</footer>
+</body>
+</html>

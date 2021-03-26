@@ -1,0 +1,279 @@
+/*
+* Matthew Zamudio
+* TEC 319: Static Webpage project
+* Started ~3/4/20
+*/
+
+/* There's a lot of unecessary code here from the last project it was used for */
+
+/* reset selector */
+* {
+    margin: 0;
+    padding: 0;
+}
+/* shadow class */
+.shadow{
+    text-shadow: 2px 2px 2px #2E917D;
+}
+
+.bg-img{
+    background:url("../images/yomu.png");
+    position: fixed;
+    right: 0px;
+    bottom: -50px;
+    opacity: 10%;
+}
+
+/* the styles for the elements */
+body {
+	font-family: Helvetica, Veranda, "Sans-Serif";
+    font-size: 100%; 
+    /* added new width*/    
+    width: 800px;  
+    background-color: #FBF9FA;
+    margin: 0px auto;
+    border: 3px solid #2E917D;     
+}
+/* the styles for the header */
+header img {
+	float: left;
+    padding: 0 30px; /* img padding */
+}
+header{
+    background-image: url(../images/banner.png);
+    /*
+    background-image: linear-gradient(30deg, #f6bb73 0%, #f6bb73 30%, white 50%, #f6bb73 80%, #f6bb73 100%); */
+    /* adds border on bottom w/ padding */
+    height: 150px;
+    border-bottom: 3px solid #2E917D;
+    padding: 1.5em 0 2em; /* top middle bottom */
+}
+/* formatting for header 2 */
+header h2{
+    font-size: 170%;
+    color: #2E917D;
+    font-family: cursive;
+}
+/*formatting for header 3 */
+header h3{
+    font-family: cursive;
+    font-size: 130%;
+    font-style: italic;
+}
+/***********************************/
+
+/* the styles for the main */
+main {
+	/* unecessary? clear: right; */
+    padding: 0 20px 20px; /* new padding for right/left + bottom */
+    width: 525px; /* total width of main */
+    float: right; /* main content floats right */
+}
+
+/* adding for padding but this messed up the img
+main img{
+    padding-bottom: 1em;
+} */
+
+/* adding styling for table */
+main table, td{
+    border: 3px solid #2E917D;
+    padding: 10px;
+    border-spacing: 5px;
+}
+main td{
+    width: 150px;
+    background-color: floralwhite;
+}
+
+main p{
+    padding-bottom: .5em;
+}
+main blockquote{
+    padding: 0px 2em;
+    font-style: italic;
+}
+main ul{
+    padding: 0px 0px 0.25em 1.25em; /* bottom + left */
+}
+main il{
+    padding-bottom: .35em;
+}
+
+main h1{
+    font-size: 150%;
+    padding: .5em 0 .25em; /* top + bottom */
+    margin: 0;
+}
+main h2{
+    font-size: 130%;
+    color: #606199;
+    /*padding: .5em 0px .25em 0px; <-- old */
+    /* new padding added for top */
+    padding: .5em 0px;
+}
+main h3{
+    font-size: 105%; 
+    padding-bottom:.25em
+}
+
+main form{
+    padding: .5em;
+}
+main form textarea{
+    margin: 0.25em 0.5em;
+}
+
+main article img{
+    float: right;
+    margin: .3em;
+    border: 1px solid black;
+    max-width: 300px;
+}
+main .specialimg{
+    border: none;
+    float:none;
+
+
+    max-width: 500px;
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+main article{
+    /* height: 400px; /* forced height because I want
+    image to show in full */
+    padding-bottom: .5em;
+    /* horizontal lines */
+    border-top: 2px solid #606199;
+    /* border-bottom: 2px solid #606199; */
+}
+main article p{
+        padding: 1em;
+}
+main article #lastart{
+    /* this css only applies to the last article.
+    This was done to avoid the double bottom borders
+    because it bothered me too much */
+    padding-bottom: .5em;
+    /* horizontal lines */
+    border-top: 2px solid #606199;
+    border-bottom: 2px solid #606199;
+}
+
+main article blockquote{
+    padding: 1em;
+    color: #606199;
+}
+
+main article h2{
+    color: #D67A9F;
+    padding: 0;
+}
+main article h3{
+    font-size: 105%;
+    padding-bottom: .25em;
+}
+/***********************************/
+
+/* new aside section */
+aside{
+    width: 215px; /*total width of aside */
+    float: right; /* left side */
+    padding: 0 0 20px 20px; /* left and bottom */
+    /* font styling */
+    color: #2E917D;
+}
+/* custom h2 for aside section */
+aside h2{
+    font-size: 130%;
+    color: #D67A9F;
+    padding: .5em 0px;
+}
+aside h3{
+    font-size: 105%;
+    padding-bottom: 0.25em;
+    color: #606199;
+}
+aside img{
+    padding-bottom: 1em; /* bottom img padding */
+    max-height: 100px;
+}
+aside ul{
+    list-style-type: none;
+    padding: 1em;
+}
+aside {
+    padding-bottom: 1.5em;
+}
+aside div{
+    padding: 0.6em;
+}
+/***********************************/
+
+/* main nav_bar */
+nav {
+	margin-bottom: 2em;
+}
+#nav_menu ul {
+	list-style: none;
+	position: relative;    /* first submenu within the main menu */
+}
+#nav_menu ul li {
+	float: left;
+}
+#nav_menu ul ul {
+	display: none;      /* Don't display submenu until hover of the li element */
+	position: absolute;
+	top: 100%;       /* Position the submenu at the bottom of the main menu */
+}
+#nav_menu ul ul li {
+	float: none;           /* submenus vertically */
+}
+#nav_menu ul li:hover > ul {
+	display: block;        /* Display the submenu on hover of the li element */
+}
+#nav_menu > ul::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#nav_menu ul {
+	margin: 0;
+	padding: 0;
+}
+#nav_menu ul li a {
+	text-align: center;
+	display: block;
+	width: 155px;
+	padding: 1em 0;
+	text-decoration: none;
+	background-color: #9F69A5;
+	color: white;
+	font-weight: bold;
+}
+#nav_menu ul li.lastitem a {
+	width: 180px;           /* So the menu fills the 800px width of the page */
+}
+#nav_menu ul li a.current {
+	color: yellow; /* text color to yellow */
+}
+#nav_menu ul li a:hover, #nav_menu ul li a:focus {
+	background-color: #9F69A5;
+}
+
+/***********************************/
+
+a:focus, a:hover {font-style: italic;} /*style for the links */
+
+/* the styles for the footer */
+footer p{
+    clear: both; /* clears float of aside */
+    /* adding for padding, text color to white and bg color */
+    padding: 1em 0 1em; /*top + bottom */
+    text-align: center;
+    color: white;
+    background-color: #555B8F;
+}
